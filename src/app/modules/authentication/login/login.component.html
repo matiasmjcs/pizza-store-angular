@@ -1,0 +1,25 @@
+<form class="form-group" [formGroup]="loginForm" (ngSubmit)="login()">
+  <article>
+    <label for="email" class="custom-label">Correo Electrónico</label>
+    <input type="text" id="email" formControlName="email" class="custom-input">
+    <p *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched" class="error-message">
+      El correo electrónico es obligatorio.
+    </p>
+    <p *ngIf="loginForm.get('email')?.hasError('email') && loginForm.get('email')?.touched" class="error-message">
+      El correo electrónico no es válido.
+    </p>
+  </article>
+
+  <article>
+    <label for="password" class="custom-label">Contraseña</label>
+    <input type="password" id="password" formControlName="password" class="custom-input">
+    <p *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched" class="error-message">
+      La contraseña es obligatoria.
+    </p>
+    <p *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched" class="error-message">
+      La contraseña debe tener al menos 6 caracteres.
+    </p>
+  </article>
+
+  <button  type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
