@@ -5,9 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AutheticationRoutingModule } from './authetication-routing.module';
 import { AuthenticationService } from 'src/app/modules/authentication/authentication.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignUpComponent],
   imports: [
     CommonModule, 
     HttpClientModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +8,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class AuthenticationService {
   private apiUrl = 'http://localhost:3000/api/v1/auth/login';
   private apiUrl2 = 'http://localhost:3000/api/v1/auth/profile';
+  private apiUrl3 = 'http://localhost:3000/api/v1/auth/profile';
   private tokenSession!: string;
 
   constructor(private http: HttpClient) { }
@@ -27,11 +28,31 @@ export class AuthenticationService {
 
     return this.http.post(this.apiUrl, data, httpOptions)
       .pipe(
+      map((response) => {
+        return response
+      }),
         catchError(error => {
           console.error('Error:', error);
-          return throwError(error);
+          return error;
         })
       );
+  }
+
+  signup(username: string, email: string, password: string): Observable<any> {
+    const data = {
+      username,
+      email,
+      password,
+    };
+    return this.http.post(this.apiUrl3,data).pipe(
+      map((response) => {
+        return response
+      }),
+      catchError(error => {
+        console.error('Error:', error);
+        return error;
+      })
+    )
   }
 
   profile(): Observable<any> {

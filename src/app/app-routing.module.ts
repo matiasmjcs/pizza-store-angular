@@ -4,7 +4,7 @@ import { ProfileComponent } from './modules/profile/profile.component';
 import { HomeComponent } from './modules/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
   { path: 'auth', loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: 'profile', component: ProfileComponent },
 ];
