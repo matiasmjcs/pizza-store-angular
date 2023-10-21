@@ -1,1 +1,20 @@
-<p>sign-up works!</p>
+<form [formGroup]="signUpForm" (ngSubmit)="signup()" class="form-group">
+    <article>
+        <label for="username" class="custom-label">username</label>
+        <input type="text" id="username" formControlName="username" class="custom-input">
+        <p *ngIf="signUpForm.get('username')?.hasError('required') && signUpForm.get('username')?.touched" class="error-message ">El nombre de usuario es obligatorio.</p>
+    </article>
+    <article>
+        <label for="email" class="custom-label">email</label>
+        <input type="text" id="email" formControlName="email" class="custom-input">
+        <p *ngIf="signUpForm.get('email')?.hasError('required') && signUpForm.get('email')?.touched" class="error-message ">El nombre de usuario es obligatorio.</p>
+    </article>
+    <article>
+        <label for="password" class="custom-label">password</label>
+        <input type="text" id="password" formControlName="password" class="custom-input">
+        <p *ngIf="signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.touched" class="error-message ">El nombre de usuario es obligatorio.</p>
+    </article>
+    <button type="submit" class="btn btn-primary">
+        <span>Sign Up</span>
+    </button>
+</form>
